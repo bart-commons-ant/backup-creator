@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<!DOCTYPE project>
+<project name="backup-creator" default="all">
+
+	<dirname property="antfile.dir.backup-creator" file="${ant.file.backup-creator}" />
+	<property file="${antfile.dir.backup-creator}/build.properties" />
+
+	<macrodef name="validate-property">
+		<attribute name="name" />
+		<sequential>
+			<fail message="Missing value for property: @{name}">
+			    <condition>
+			        <or>
+			            <equals arg1="${@{name}}" arg2=""/>
+			            <not>
+			                <isset property="@{name}"/>
+			            </not>
+			       </or>
+			   </condition>
+			</fail>
+		</sequential>
+	</macrodef>
+	
+	<target name="validate">
+		<validate-property name="src.dir" />
+		<validate-property name="dest.dir" />
+		<validate-property name="base.name" />
+	</target>
+	
+	<target name="backup">
+		<tstamp>
+			<format property="appendix" pattern="yyyy-MM-dd hh_mm" locale="en,UK" />
+		</tstamp>
+		<property name="zip.filename" value="${base.name}-${appendix}.zip" />
+		<zip destfile="${dest.dir}/${zip.filename}" basedir="${src.dir}" update="true" />
+		<echo level="info" message="Backup saved to: ${dest.dir}/${zip.filename}" />
+	</target>
+
+	<target name="all" depends="validate,backup" />
+
+</project>
