@@ -24,14 +24,14 @@
 	<target name="validate">
 		<validate-property name="src.dir" />
 		<validate-property name="dest.dir" />
-		<validate-property name="base.name" />
+		<validate-property name="base-name" />
 	</target>
 	
 	<target name="backup">
 		<tstamp>
 			<format property="appendix" pattern="yyyy-MM-dd hh_mm" locale="en,UK" />
 		</tstamp>
-		<property name="zip.filename" value="${base.name}-${appendix}.zip" />
+		<property name="zip.filename" value="${base-name}-${appendix}.zip" />
 		<zip destfile="${dest.dir}/${zip.filename}" basedir="${src.dir}" update="true" />
 		<echo level="info" message="Backup saved to: ${dest.dir}/${zip.filename}" />
 	</target>
