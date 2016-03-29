@@ -8,9 +8,9 @@ This ant script will do a zip backup of a given folder. Date and time will be au
 Parameters
 ----------
 
-	- src.dir - Folder to backup.
-	- dest.dir - Folder where to save backup zip file.
-	- base-name - Backup zip file name without extension & date/time.
+- src.dir - Folder to backup.
+- dest.dir - Folder where to save backup zip file.
+- base-name - Backup zip file name without extension & date/time.
 
 Example usage
 -------------
